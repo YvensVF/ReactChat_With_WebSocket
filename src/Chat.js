@@ -7,6 +7,10 @@ function Chat() {
   const handleFormSubmit = (e) => {
     e.preventDefault()
     if (message.trim()) {
+      setMessages([...messages, {
+        id: 1,
+        message
+      }])
       setMessage('')
     }
   }
@@ -18,12 +22,13 @@ function Chat() {
   return (
     <main className="container">
       <ul className="list">
+        {messages.map(m => (
         <li className="list__item list__item--mine">
-          <span className="message message--mine">Olá</span>
+          <span className="message message--mine" key={m.id}>
+            {m.message}
+          </span>
         </li>
-        <li className="list__item list__item--other">
-          <span className="message message--other">Olá</span>
-        </li>
+        ))}
       </ul>
       <form className="form" onSubmit={handleFormSubmit}>
         <input 
